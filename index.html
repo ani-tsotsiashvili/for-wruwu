@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ყვავილები ჩემს წრუწუნას 🐭🌸</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+            font-family: 'Georgia', serif;
+            overflow-x: hidden;
+            color: #fff;
+            box-sizing: border-box;
+        }
+
+        .stars {
+            position: fixed;
+            inset: 0;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+                radial-gradient(2px 2px at 80px 110px, #fff, transparent),
+                radial-gradient(1.5px 1.5px at 200px 60px, #ffd1dc, transparent);
+            background-size: 260px 180px;
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        #openToggle {
+            display: none;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 350px;
+            min-height: 480px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .time-capsule {
+            position: absolute;
+            width: 265px;
+            height: 265px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(147, 112, 219, 0.28));
+            border: 2px solid rgba(255, 209, 220, 0.75);
+            box-shadow: 0 0 35px rgba(255, 182, 193, 0.4), inset 0 0 25px rgba(147, 112, 219, 0.45);
+            backdrop-filter: blur(8px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 22px;
+            box-sizing: border-box;
+            z-index: 20;
+            cursor: pointer;
+            transition: all 0.7s ease;
+        }
+
+        .time-capsule:hover {
+            transform: scale(1.04);
+        }
+
+        #openToggle:checked ~ .time-capsule {
+            transform: scale(1.4);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .mouse-icon {
+            font-size: 52px;
+            margin-bottom: 8px;
+        }
+
+        .capsule-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffd1dc;
+            margin: 0;
+        }
+
+        .capsule-sub {
+            font-size: 12px;
+            color: #e0d4fc;
+            margin-top: 8px;
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        .letter-card {
+            position: relative;
+            width: 100%;
+            background: rgba(255, 252, 253, 0.97);
+            color: #1f1627;
+            border: 2px solid #c77dff;
+            border-radius: 20px;
+            padding: 20px 18px;
+            box-sizing: border-box;
+            text-align: center;
+            z-index: 10;
+            transform: scale(0.4);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.7s ease 0.15s;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75);
+        }
+
+        #openToggle:checked ~ .letter-card {
+            transform: scale(1);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .letter-card h2 {
+            color: #5a189a;
+            margin: 0 0 8px 0;
+            font-size: 18.5px;
+        }
+
+        .letter-card p {
+            font-size: 12.5px;
+            line-height: 1.5;
+            margin: 7px 0;
+            color: #2b2135;
+        }
+
+        .soul-box {
+            background: #f3e5f5;
+            border-left: 4px solid #9d4edd;
+            padding: 8px 11px;
+            border-radius: 8px;
+            margin: 9px 0;
+            font-size: 12px;
+            font-style: italic;
+            color: #3c096c;
+        }
+
+        .philosophy-box {
+            background: #fff0f5;
+            border: 1px dashed #d291bc;
+            padding: 9px 11px;
+            border-radius: 10px;
+            margin: 9px 0;
+            text-align: left;
+        }
+
+        .letter-card .algernon-note {
+            font-size: 11.5px;
+            color: #590d22;
+            margin: 0 0 6px 0;
+            line-height: 1.45;
+        }
+
+        .letter-card .nietzsche-quote {
+            font-size: 11.5px;
+            color: #240046;
+            font-weight: bold;
+            margin: 0;
+            padding-top: 6px;
+            border-top: 1px solid rgba(210, 145, 188, 0.4);
+            line-height: 1.45;
+        }
+
+        .fitness-box {
+            background: linear-gradient(135deg, #240046 0%, #3c096c 100%);
+            color: #ffffff;
+            padding: 11px 12px;
+            border-radius: 12px;
+            margin: 10px 0 8px 0;
+            text-align: left;
+        }
+
+        .fitness-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11.5px;
+            font-weight: bold;
+            color: #ffccd5;
+            margin-bottom: 6px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 7px;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 7px;
+        }
+
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #ff758f, #ffb3c1);
+            border-radius: 10px;
+            transition: width 1.4s ease-out 0.4s;
+        }
+
+        #openToggle:checked ~ .letter-card .progress-fill {
+            width: 100%;
+        }
+
+        .letter-card .fitness-text {
+            font-size: 11.5px;
+            line-height: 1.45;
+            color: #ffffff !important;
+            margin: 0;
+        }
+
+        .signature {
+            margin-top: 10px;
+            padding-top: 7px;
+            border-top: 1px dashed #c77dff;
+            font-size: 11.5px;
+            font-weight: bold;
+            color: #5a189a;
+        }
+    </style>
+</head>
+<body>
+
+<div class="stars"></div>
+
+<div class="container">
+    <input type="checkbox" id="openToggle">
+
+    <label for="openToggle" class="time-capsule">
+        <div class="mouse-icon">🐭🌸</div>
+        <h1 class="capsule-title">ჩემს წრუწუნას ⏳</h1>
+        <p class="capsule-sub">იქ, სადაც დრო და სივრცე ჩერდება...<br>დააჭირე გასახსნელად 🤍</p>
+    </label>
+
+    <div class="letter-card">
+        <h2>ჟანა, ჩემო წრუწუნა 🐭🌸</h2>
+        
+        <p>შენთან ერთად დროის ფენომენი საერთოდ ქრება — თითქოს დროისა და სივრცის მიღმა ვართ, სადაც ყოველი წამი უძვირფასესია.</p>
+        
+        <div class="soul-box">
+            „მე მდიდარი ვარ იმით, რომ უბრალოდ არსებობ. მიყვარს შენი სული და შენი არსებობა ჩემს ცხოვრებაში.“ ✨
+        </div>
+
+        <div class="philosophy-box">
+            <p class="algernon-note">
+                🌸 <b>„ყვავილები ელჯერნონისთვის“:</b> როგორც წიგნი, რომელიც გულში და კანზეც კი გვინდოდა აღგვებეჭდა — ეს ყვავილები ჩემს წრუწუნას, მარადიული სიყვარულის ნიშნად.
+            </p>
+            <p class="nietzsche-quote">
+                ⚡ „არა სიბრალული, არამედ თანასიხარული ქმნის მეგობარს.“ — ფრიდრიხ ნიცშე
+            </p>
+        </div>
+
+        <div class="fitness-box">
+            <div class="fitness-header">
+                <span>💪 წრუწუნას წინსვლა</span>
+                <span>თანასიხარული ✨</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <p class="fitness-text">
+                ვუყურებ შენს ფიზიკურ პროგრესს ვარჯიშში — პატარა წრუწუნა სერიოზულ ძალად ყალიბდება და ზუსტად ნიცშესეული თანასიხარულით ვხარობ! შენი ყოველი წინსვლა ჩემი გამარჯვებაა! 🔥🤍
+            </p>
+        </div>
+
+        <div class="signature">
+            ანისგან — კოდში ჩაწერილი გამოუთქმელი სიყვარული ჩემი სულიერი ადამიანისთვის 💻💫
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
